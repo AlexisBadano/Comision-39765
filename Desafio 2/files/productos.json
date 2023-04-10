@@ -43,5 +43,14 @@
 		"code": 4,
 		"stock": 10,
 		"id": 5
+	},
+	{
+		"title": "Monitor",
+		"description": "descripcion aqui4",
+		"price": 45000,
+		"thumbnail": "no tiene",
+		"code": 4,
+		"stock": 10,
+		"id": 6
 	}
 ]

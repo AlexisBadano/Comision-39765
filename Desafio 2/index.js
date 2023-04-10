@@ -40,7 +40,7 @@ const context = async () => {
 
     // await productManager.addProduct(testProduct2)
     // await productManager.addProduct(testProduct3)
-    // await productManager.addProduct(testProduct4)
+    await productManager.addProduct(testProduct4)
     await productManager.updateProduct(3,testProduct);
     // await productManager.deleteProduct(1);
 }
