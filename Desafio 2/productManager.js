@@ -11,6 +11,7 @@ export default class ProductManager {
         if(fs.existsSync(this.path)){
             const data = await fs.promises.readFile(this.path,'utf-8')
             const products = JSON.parse(data)
+            console.log(products)
             return products
         }
             return []
@@ -77,7 +78,11 @@ export default class ProductManager {
 
     deleteProduct = async (productId) => {
         const products = await this.getProducts();
-        const productById = await this.getProductById(productId);
+       
+        const productById = products.findIndex(product=>product.id === productId)
+        if(productById === -1){
+            console.log("Not Found")
+        }
 
         products.splice(productById,1)
 
