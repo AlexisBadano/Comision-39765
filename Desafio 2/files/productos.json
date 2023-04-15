@@ -52,5 +52,14 @@
 		"code": 4,
 		"stock": 10,
 		"id": 6
+	},
+	{
+		"title": "PC Gamer",
+		"description": "descripcion aqui",
+		"price": 500000,
+		"thumbnail": "no tiene",
+		"code": 1,
+		"stock": 50,
+		"id": 7
 	}
 ]

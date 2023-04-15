@@ -58,14 +58,19 @@ export default class ProductManager {
             console.log("Not Found")
         }
         
-        return products[productIndex], productIndex
+        return products[productIndex]
 
     }
 
 
     updateProduct = async (productId, updatedProduct) => {
         const products = await this.getProducts();
-        const productIndex = await this.getProductById(productId);
+        // const productIndex = await this.getProductById(productId);
+
+        const productIndex = products.findIndex(product=>product.id === productId)
+        if(productId === -1){
+            console.log("Not Found")
+        }
 
         products[productIndex] = {...products[productIndex], ...updatedProduct};
 
