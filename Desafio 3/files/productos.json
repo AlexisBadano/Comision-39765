@@ -52,5 +52,41 @@
 		"code": 4,
 		"stock": 10,
 		"id": 6
+	},
+	{
+		"title": "PC Office",
+		"description": "descripcion aqui4",
+		"price": 150500,
+		"thumbnail": "no tiene",
+		"code": 2,
+		"stock": 25,
+		"id": 7
+	},
+	{
+		"title": "Notebook",
+		"description": "descripcion aqui4",
+		"price": 250500,
+		"thumbnail": "no tiene",
+		"code": 3,
+		"stock": 50,
+		"id": 8
+	},
+	{
+		"title": "Monitor",
+		"description": "descripcion aqui4",
+		"price": 45000,
+		"thumbnail": "no tiene",
+		"code": 4,
+		"stock": 10,
+		"id": 9
+	},
+	{
+		"title": "Monitor",
+		"description": "descripcion aqui4",
+		"price": 45000,
+		"thumbnail": "no tiene",
+		"code": 4,
+		"stock": 10,
+		"id": 10
 	}
 ]
