@@ -6,7 +6,7 @@ const productManager = new ProductManager();
 const app = express();
 
 const context = async () => {
-    
+
 
     app.listen(8080, () => {
 
@@ -15,28 +15,28 @@ const context = async () => {
 
             const { limit } = req.query;
 
-            if(limit) {
+            if (limit) {
                 const products = await productManager.getProducts()
                 return res.send(products.slice(0, limit))
             }
 
             const products = await productManager.getProducts();
             return res.json(products)
-    
-    
+
+
         })
 
-        app.get ('/products/:id', async (req, res) => {
-            
+        app.get('/products/:id', async (req, res) => {
+
             const { id } = req.params;
-            
+
             const products = await productManager.getProductById(parseInt(id))
 
             return res.send(products)
 
         })
-    
-    
+
+
     })
 
     const testProduct = {
