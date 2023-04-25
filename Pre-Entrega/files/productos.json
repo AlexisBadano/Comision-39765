@@ -63,178 +63,6 @@
 		"id": 7
 	},
 	{
-		"title": "Notebook",
-		"description": "descripcion aqui4",
-		"price": 250500,
-		"thumbnail": "no tiene",
-		"code": 3,
-		"stock": 50,
-		"id": 8
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"price": 45000,
-		"thumbnail": "no tiene",
-		"code": 4,
-		"stock": 10,
-		"id": 9
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"price": 45000,
-		"thumbnail": "no tiene",
-		"code": 4,
-		"stock": 10,
-		"id": 10
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"price": 45000,
-		"thumbnail": "a",
-		"code": 4,
-		"stock": 10,
-		"id": 11
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"price": 45000,
-		"thumbnail": [],
-		"code": 4,
-		"stock": 10,
-		"id": 12
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"price": 45000,
-		"thumbnail": [],
-		"code": 4,
-		"stock": 10,
-		"id": 13
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"price": 45000,
-		"thumbnail": [],
-		"code": 4,
-		"stock": 10,
-		"id": 14
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"price": 45000,
-		"thumbnail": [],
-		"code": 4,
-		"stock": 10,
-		"id": 15
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"price": 45000,
-		"thumbnail": [],
-		"code": 4,
-		"stock": 10,
-		"id": 16
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"price": 45000,
-		"thumbnail": [],
-		"code": 4,
-		"stock": 10,
-		"id": 17
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"price": 45000,
-		"thumbnail": [],
-		"code": 4,
-		"stock": 10,
-		"id": 18
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"price": 45000,
-		"thumbnail": [],
-		"code": 4,
-		"stock": 10,
-		"id": 19
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"price": 45000,
-		"thumbnail": [],
-		"code": 4,
-		"stock": 10,
-		"id": 20
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"code": 14657,
-		"price": 45000,
-		"status": true,
-		"stock": 10,
-		"category": "Monitor",
-		"thumbnail": [],
-		"id": 21
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"code": 14657,
-		"price": 45000,
-		"status": true,
-		"stock": 10,
-		"category": "Monitor",
-		"thumbnail": [],
-		"id": 22
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"code": 14657,
-		"price": 45000,
-		"status": true,
-		"stock": 10,
-		"category": "Monitor",
-		"thumbnail": [],
-		"id": 23
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"code": 14657,
-		"price": 45000,
-		"status": true,
-		"stock": 10,
-		"category": "Monitor",
-		"thumbnail": [],
-		"id": 24
-	},
-	{
-		"title": "Monitor",
-		"description": "descripcion aqui4",
-		"code": 14657,
-		"price": 45000,
-		"status": true,
-		"stock": 10,
-		"category": "Monitor",
-		"thumbnail": [],
-		"id": 25
-	},
-	{
 		"title": "Computadora",
 		"description": "descripcion aqui4",
 		"code": 14658,
@@ -243,6 +71,17 @@
 		"stock": 10,
 		"category": "Monitor",
 		"thumbnail": [],
-		"id": 26
+		"id": 8
+	},
+	{
+		"title": "Computadora",
+		"description": "descripcion aqui4",
+		"code": 14646,
+		"price": 145000,
+		"status": true,
+		"stock": 10,
+		"category": "PC",
+		"thumbnail": [],
+		"id": 9
 	}
 ]
