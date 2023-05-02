@@ -1,0 +1,44 @@
+[
+	{
+		"title": "PC Office",
+		"description": "descripcion aqui4",
+		"price": 150500,
+		"thumbnail": "no tiene",
+		"code": 2,
+		"stock": 25,
+		"id": 1
+	},
+	{
+		"title": "Computadora",
+		"description": "descripcion aqui4",
+		"code": 20,
+		"price": 145777,
+		"status": true,
+		"stock": 10,
+		"category": "PC",
+		"thumbnail": [],
+		"id": 2
+	},
+	{
+		"title": "Computadora",
+		"description": "descripcion aqui",
+		"code": 124,
+		"price": 154978,
+		"status": true,
+		"stock": 10,
+		"category": "PC",
+		"thumbnail": [],
+		"id": 3
+	},
+	{
+		"title": "Notebook Asus TUF",
+		"description": "descripcion aqui",
+		"code": 113,
+		"price": 450999,
+		"status": true,
+		"stock": 10,
+		"category": "PC",
+		"thumbnail": [],
+		"id": 4
+	}
+]
