@@ -2,7 +2,7 @@ import ProductManager from "./dao/fileSystem/managers/productManager.js";
 import express from "express";
 import productsRouter from "./routes/products.router.js";
 import registerChatHandler from "./listeners/chatHandler.js";
-import cartsRouter from "./routes/carts.router.js";
+import cartsRouter from "./routes/carts.router.mongo.js";
 import viewsRouter from "./routes/views.router.js";
 import handlebars from "express-handlebars";
 import __dirname from './utils.js';

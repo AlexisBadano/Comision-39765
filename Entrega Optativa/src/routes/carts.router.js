@@ -1,10 +1,10 @@
 import { Router } from "express";
-import CartManager from "../dao/fileSystem/managers/cartManager.js";
+import CartManager from "../dao/mongo/managers/cartManager.js";
 
 
 
 const cartManager = new CartManager();
-const carts = cartManager.getCarts();
+const carts =  cartManager.getCarts();
 const router = Router();
 
 
@@ -19,25 +19,36 @@ router.get("/", async (req, res) => {
   }
 });
 
+// router.get("/:cid", async (req, res) => {
+//   try {
+//     const pos = parseInt(req.params.cid);
+//     const cart = await carts;
+//     const cartSelect = cart.find((cart) => cart.id === pos);
+//     res.status(200).send(cartSelect);
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .send({ error: "Internal server error, contact the administrator" });
+//   }
+// });
+
 router.get("/:cid", async (req, res) => {
-  try {
-    const pos = parseInt(req.params.cid);
-    const cart = await carts;
-    const cartSelect = cart.find((cart) => cart.id === pos);
-    res.status(200).send(cartSelect);
-  } catch (error) {
-    res
-      .status(500)
-      .send({ error: "Internal server error, contact the administrator" });
-  }
-});
+  try{
+  const pos = parseInt(req.params.cid);
+  console.log(pos)
+  await cartManager.getCartBy(pos)
+  res.status(200).send(pos)
+} catch (error) {
+  res.status (500)
+}
+})
 
 router.post("/", async (req, res) => {
   try {
     const cart = req.body;
-    await cartManager.createCarts(cart);
+    await cartManager.createCart(cart);
     res .status(200)
-        .send({ status: "Success", message: `carrito ID: '${cart.id}' was added succesfully.'` });
+        .send({ status: "Success", message: `added succesfully.` });
   } catch (error) {
     res
       .status(500)
