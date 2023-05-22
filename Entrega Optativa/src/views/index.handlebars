@@ -1,0 +1,16 @@
+<div>
+    <h1>Hola Tamara! :D</h1>
+
+    <h3>Productos:</h3>
+    <ul>
+    {{#each products}}
+    <li><p>{{this.title}} - {{this.description}} - {{this.price}} </p></li>
+    {{/each}}
+    </ul>
+</div>
+
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>

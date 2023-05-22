@@ -40,27 +40,5 @@
 		"category": "PC",
 		"thumbnail": [],
 		"id": 4
-	},
-	{
-		"title": "Notebook Asus TUF",
-		"description": "descripcion aqui",
-		"code": 9876,
-		"price": 450999,
-		"status": true,
-		"stock": 10,
-		"category": "PC",
-		"thumbnail": [],
-		"id": 5
-	},
-	{
-		"title": "Notebook Asus TUF",
-		"description": "descripcion aqui",
-		"code": 9999,
-		"price": 450999,
-		"status": true,
-		"stock": 10,
-		"category": "PC",
-		"thumbnail": [],
-		"id": 6
 	}
 ]
