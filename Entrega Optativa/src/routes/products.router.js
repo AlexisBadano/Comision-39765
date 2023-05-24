@@ -45,8 +45,9 @@ router.post("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const { id } = req.params;
+        console.log(id)
 
-        const products = await productManager.getProductById(parseInt(id));
+        const products = await productManager.getProductBy({_id: id});
 
         return res.send(products);
 
@@ -63,7 +64,7 @@ router.get("/:id", async (req, res) => {
 router.put("/:pid", async (req, res) => {
     try {
 
-        const id = parseInt(req.params.pid);
+        const id = req.params.pid;
         const body = req.body;
 
         await productManager.updateProduct(id, body);
@@ -78,9 +79,9 @@ router.put("/:pid", async (req, res) => {
 
 router.delete("/:pid", async (req, res) => {
     try {
-        const id = parseInt(req.params.pid);
-
-        await productManager.deleteProduct(id);
+        const id = req.params.pid;
+        console.log(id)
+        await productManager.deleteProduct({_id: id});
         res .status(200)
             .send({ status: "Success", message: "Product deleted" });
 

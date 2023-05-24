@@ -11,6 +11,7 @@ const router = Router();
 router.get("/", async (req, res) => {
   try {
     const allCarts = await carts;
+    // console.log(allCarts)
     res.status(200).send(allCarts);
   } catch (error) {
     res
@@ -35,9 +36,8 @@ router.get("/", async (req, res) => {
 router.get("/:cid", async (req, res) => {
   try{
   const pos = parseInt(req.params.cid);
-  console.log(pos)
-  await cartManager.getCartBy(pos)
-  res.status(200).send(pos)
+  const resCart = await cartManager.getCartBy(pos)
+  res.status(200).send(resCart)
 } catch (error) {
   res.status (500)
 }
