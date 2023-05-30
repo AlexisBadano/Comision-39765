@@ -6,10 +6,6 @@ export default class ProductManager {
     getProducts = () => {
         return productModel.find().lean();
     };
-
-    getProductsBy = (params) => {
-        return productModel.find(params);
-    };
     
     getProductBy = (params) => {
         return productModel.findOne(params);

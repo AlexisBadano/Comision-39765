@@ -3,7 +3,6 @@ import fs from 'fs'
 import ProductManager from './productManager.js'
 
 const productManager = new ProductManager()
-// const products = productManager.getProducts();
 
 export default class CartManager {
     constructor() {

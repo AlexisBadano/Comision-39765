@@ -1,17 +1,17 @@
 import { Router } from "express";
 import CartManager from "../dao/mongo/managers/cartManager.js";
+import ProductManager from "../dao/mongo/managers/productManager.js";
 
-
+const productManager = new ProductManager();
 
 const cartManager = new CartManager();
-const carts =  cartManager.getCarts();
+
 const router = Router();
 
 
 router.get("/", async (req, res) => {
   try {
-    const allCarts = await carts;
-    // console.log(allCarts)
+    const allCarts = await cartManager.getCarts();
     res.status(200).send(allCarts);
   } catch (error) {
     res
@@ -20,35 +20,23 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.get("/:cid", async (req, res) => {
-//   try {
-//     const pos = parseInt(req.params.cid);
-//     const cart = await carts;
-//     const cartSelect = cart.find((cart) => cart.id === pos);
-//     res.status(200).send(cartSelect);
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .send({ error: "Internal server error, contact the administrator" });
-//   }
-// });
-
-router.get("/:cid", async (req, res) => {
-  try{
-  const pos = parseInt(req.params.cid);
-  const resCart = await cartManager.getCartBy(pos)
-  res.status(200).send(resCart)
-} catch (error) {
-  res.status (500)
-}
-})
+router.get(`/:cId`, async (req, res) => {
+  try {
+    const idCart = req.params.cId;
+    const allCarts = await cartManager.getCarts();
+    const selected = allCarts.find((c) => c._id == idCart);
+    res.send(selected);
+  } catch (error) {
+    return res.status(404).send({ status: "error", error: "not found" });
+  }
+});
 
 router.post("/", async (req, res) => {
   try {
     const cart = req.body;
     await cartManager.createCart(cart);
-    res .status(200)
-        .send({ status: "Success", message: `added succesfully.` });
+    res.status(200)
+      .send({ status: "Success", message: `added succesfully.` });
   } catch (error) {
     res
       .status(500)
@@ -56,20 +44,35 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post("/:cid/product/:pid", async (req, res) => {
-  try {
-    const cid = parseInt(req.params.cid);
-    const pid = parseInt(req.params.pid);
+router.put("/:cId/product/:pId", async (req, res) => {
 
-    const quant = isNaN(req.body?.quantity) ? 0 : parseInt(req.body?.quantity);
+  const prodId = req.params.pId;
+  const cartId = req.params.cId;
+  const cart = await cartManager.getCartBy({ _id: cartId });
 
-    const resAddProduct = await cartManager.addProduct(cid, pid, quant);
-    res.status(200).send(resAddProduct);
-  } catch (error) {
-    res
-      .status(500)
-      .send({ error: "Internal server error, contact the administrator" });
-  }
-});
+
+  if (!cart) {
+    return res.status(404).send({ status: "error", error: "Cart not found" })
+  };
+
+  const productIndex = cart.products.findIndex((product) => product.id == prodId);
+
+  if (productIndex === -1) {
+    return res.status(404).send({ status: "error", error: "Product not found in cart" })
+  };
+
+  const updatedQuantity = req.body.quantity;
+  
+  //Creo que aca habia que sumarle la cantidad a la ya existente por eso puse el "+="
+  cart.products[productIndex].quantity += updatedQuantity;
+
+  await cartManager.updateCart(cartId, cart)
+
+  res
+    .status(200)
+    .send({ status: "Success", message: `added succesfully.` });
+
+
+})
 
 export default router;

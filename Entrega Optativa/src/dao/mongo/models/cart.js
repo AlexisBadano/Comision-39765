@@ -4,7 +4,14 @@ const collection = "Cart";
 
 const schema = new mongoose.Schema({
 
-    products: []
+    products: [{
+        id: Number,
+        quantity: {
+            type: Number,
+            default: 1,
+        }
+    }
+    ]
     
 },{timestamps:{createdAt:"created_at", updatedAt:"updated_at"}});
 

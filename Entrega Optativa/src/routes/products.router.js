@@ -58,9 +58,6 @@ router.get("/:id", async (req, res) => {
 
 });
 
-
-
-
 router.put("/:pid", async (req, res) => {
     try {
 
