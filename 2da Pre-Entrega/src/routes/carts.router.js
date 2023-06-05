@@ -44,6 +44,8 @@ router.post("/", async (req, res) => {
   }
 });
 
+//Router que usabamos sin referencias a la DB y Poblar
+
 router.put("/:cId/product/:pId", async (req, res) => {
 
   const prodId = req.params.pId;
@@ -89,6 +91,17 @@ router.delete("/:cid", async (req, res) => {
     }
 });
 
+router.delete("/:cid/product/:pid", async (req, res) => {
+  try {
+    const cid = req.params.cid;
+    const pid = req.params.pid;
+    
+    const deletedProductCart = await cartManager.deleteProductInCart(cid, pid);
+    res.send({ status: "succes", payload: deletedProductCart });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 
 export default router;

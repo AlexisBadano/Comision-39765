@@ -1,0 +1,24 @@
+<div>
+    <h1>Hola Tamara! :D</h1>
+
+    <h3>Productos:</h3>
+    <ul>
+    {{#each products}}
+    <li>
+        <p>{{this.title}} - {{this.description}} - ${{this.price}} </p>
+        <button class="add-to-cart-btn">Agregar al carrito</button>
+    </li>
+    {{/each}}
+    </ul>
+    
+    {{#if hasPrevPage}}
+    <a href="/?limit={{limit}}&page={{prevPage}}"><button> Previa </button></a>
+    {{/if}}
+
+    {{page}}
+
+    {{#if hasNextPage}}
+    <a href="/?limit={{limit}}&page={{nextPage}}"><button> Siguiente </button></a>
+    {{/if}}
+
+</div>
