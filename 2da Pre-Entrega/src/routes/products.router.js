@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import ProductManager from "../dao/mongo/managers/productManager.js";
+import productModel from "../dao/mongo/models/products.js";
 
 const router = Router();
 
@@ -8,24 +9,21 @@ const productManager = new ProductManager();
 
 
 router.get('/', async (req, res) => {
+    
     try {
-        const { limit } = req.query;
-
-        if (limit) {
-            const products = await productManager.getProducts()
-            return res.send(products.slice(0, limit))
+            const products = await productManager.getProducts();
+            if (products.length == 0) {
+                res.send({ message: "no hay productos cargados" })
+            } else {
+                console.log(products)
+                res.send({ status: "success", payload: products })
+            }
+        } catch (error) {
+            console.log("Productos no encontrados")
         }
 
-        const products = await productManager.getProducts();
-        return res.json(products)
+});
 
-
-    } catch (error) {
-        res.status(500).send(error)
-
-    }
-}
-)
 router.post("/", async (req, res) => {
     try {
         const prod = req.body;
