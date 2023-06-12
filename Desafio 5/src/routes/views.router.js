@@ -1,4 +1,6 @@
 import { Router } from "express";
+import privacy from "../middlewares/auth.js";
+
 import ProductManager from "../dao/mongo/managers/productManager.js";
 import productModel from "../dao/mongo/models/products.js";
 import CartManager from "../dao/mongo/managers/cartManager.js";
@@ -33,11 +35,11 @@ router.get('/products', async (req, res)=>{
     if(search){
     const {docs, hasPrevPage, hasNextPage, prevPage, nextPage, ...rest} = await productModel.paginate({category: search}, {page, limit: limit, sort: {price: sort} ,lean: true} )
     const products = docs
-    res.render('index', {products, limit , page:rest.page, hasPrevPage, hasNextPage, prevPage, nextPage})
+    res.render('index', {products, limit , page:rest.page, hasPrevPage, hasNextPage, prevPage, nextPage, user: req.session.user})
     } else {
         const {docs, hasPrevPage, hasNextPage, prevPage, nextPage, ...rest} = await productModel.paginate({ }, {page, limit: limit, lean: true} )
         const products = docs
-        res.render('products', {products, limit , page:rest.page, hasPrevPage, hasNextPage, prevPage, nextPage})
+        res.render('products', {products, limit , page:rest.page, hasPrevPage, hasNextPage, prevPage, nextPage, user: req.session.user})
     }
 
 })
@@ -58,17 +60,17 @@ router.get('/cart/:cid', async (req, res)=> {
     res.render('cart', {cart})
 })
 
-router.get('/register', (req, res) => {
+router.get('/register', privacy('NO_AUTHENTICATED'), (req, res) => {
     res.render('register')
 })
 
-router.get('/login', (req, res) =>{
+router.get('/login', privacy('NO_AUTHENTICATED') , (req, res) =>{
     res.render('login')
 })
 
-router.get('/profile', (req, res) => {
+router.get('/profile', privacy('PRIVATE'), (req, res) => {
     res.render('profile', {
         user: req.session.user})
 })
 
-export default router
+export default router;
