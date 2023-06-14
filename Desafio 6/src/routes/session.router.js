@@ -29,11 +29,24 @@ router.get('/loginFail', (req, res) => {
 })
 
 //Trigger para redirigir a Github Callback
-router.get('/github', passport.authenticate('github'))
+router.get('/github', passport.authenticate('github'), (req, res)=>{})
 
-router.get('githubcallback', passport.authenticate('github'), (req, res) =>{
-
+router.get('/githubcallback', passport.authenticate('github'), async (req, res) =>{
+    try {
+        const user = req.user;
+        req.session.user = {
+            id: user.id,
+            name: user.firstName,
+            email: user.email,
+            role: user.role,
+            bio: user.bio
+        }
+    res.send({status: 'success', message: 'Login with Github'})
+    } catch (error) {
+        console.log({status: "BAD", error: error})
+    }
 })
+
 
 
 export default router;

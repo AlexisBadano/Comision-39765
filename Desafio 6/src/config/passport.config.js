@@ -15,23 +15,27 @@ const initializePassport = () => {
 
     /*------------Estrategia Local-----------------*/ 
     passport.use('register', new LocalStrategy({passReqToCallback: true, usernameField:'email'}, async (req, email, password, done) => {        
-    const { firstName, lastName} = req.body;
+    try {
+        const { firstName, lastName} = req.body;
 
-    const userExist = await userModel.findOne({email});
+        const userExist = await userModel.findOne({email});
         if (userExist) {
         return done(null, false, {message: 'User already exists'} )
-    }
-    const hashedPassword = await createHash(password);
+        }
+        const hashedPassword = await createHash(password);
 
-    const user = {
+        const user = {
             firstName,
             lastName,
             email,
             password: hashedPassword
-    }
+        }
 
-    const result = await userModel.create(user)
-    done(null, result)
+        const result = await userModel.create(user)
+        done(null, result)
+    } catch (error) {
+        done(error)    
+    }
     }))
 
     
@@ -39,49 +43,67 @@ const initializePassport = () => {
     
     passport.use('login', new LocalStrategy({usernameField: 'email'}, async (email, password, done)=>{
 
-    let user = await userModel.findOne( {email})
+    try {
+        let user = await userModel.findOne( {email})
 
-    if(email === "admin@admin.com" && password === "secretpass"){
-        user = {
-            id: 0,
-            name: "Admin",
-            email: "secret",
-            role: "superAdmin"
+        if(email === "admin@admin.com" && password === "secretpass"){
+            user = {
+                id: 0,
+                name: "Admin",
+                email: "secret",
+                role: "superAdmin"
+            }
+            return done(null, user)
         }
-        return done(null, user)
-    }
 
-    if (!user){
-        return done(null, false, {message:"Usuario o contraseña incorrectos"})
-    }
+        if (!user){
+            return done(null, false, {message:"Usuario o contraseña incorrectos"})
+        }
 
-    const isValidPassword = await validatePassowrd(password, user.password)
-    if(!isValidPassword) return done(null, false,{message:"Usuario o contraseña incorrectos"})
+        const isValidPassword = await validatePassowrd(password, user.password)
+        if(!isValidPassword) return done(null, false,{message:"Usuario o contraseña incorrectos"})
 
-    user = {
-        id: user._id,
-        name: `${user.firstName} ${user.lastName}`,
-        email: user.email,
-        role: user.role
+        user = {
+            id: user._id,
+            name: `${user.firstName} ${user.lastName}`,
+            email: user.email,
+            role: user.role
+        }
+        done(null, user)
+    } catch (error) {
+        done(error)
     }
-    done(null, user)
 
     }))
 
+/*-------------GitHub Strategy-------------------*/    
 
     passport.use('github', new GithubStrategy({
         clientID: 'Iv1.74baf7e688e55ae1',
         clientSecret: '7e14539986ba91dc695fb6a954ff4756094435ae',
-        callbackURL: 'http://localhost:8080/api/sessions/githubcallback'
+        callbackURL: 'http://localhost:8080/api/sessions/githubcallback/'
     }, async (accessToken, refreshToken, profile, done)=>{
         try {
-            console.log(profile)
+            const {name, email, bio} = profile._json;
+            const user = await userModel.findOne({email});
 
+            if(!user) {
+                const newUser = {
+                    firstName: name,
+                    email,
+                    password:'',
+                    bio
+                }
+                const result = await userModel.create(newUser)
+                done(null, result);
+            }
+            done(null, user)
 
         } catch (error) {
             done(error)
         }
     }))
+
 
 
 

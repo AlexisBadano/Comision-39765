@@ -11,7 +11,8 @@ const schema = new mongoose.Schema({
     role: {
         type: String,
         default: "user"
-    }
+    },
+    bio: String
 
 }, {timestamps:{createdAt: "created_at", updatedAt: "updated_at"}
 
