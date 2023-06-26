@@ -17,6 +17,7 @@ import sessionRouter from "./routes/session.router.js";
 import __dirname from './utils.js';
 import { Server } from 'socket.io';
 import initializePassport from "./config/passport.config.js";
+import cartModel from "./dao/mongo/models/cart.js";
 
 const productManager = new ProductManager();
 
@@ -67,4 +68,3 @@ app.use('/', viewsRouter);
 io.on("connection", socket =>{
     registerChatHandler(io, socket);
 });
-

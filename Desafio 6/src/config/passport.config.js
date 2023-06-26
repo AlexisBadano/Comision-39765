@@ -46,7 +46,7 @@ const initializePassport = () => {
     try {
         let user = await userModel.findOne( {email})
 
-        if(email === "admin@admin.com" && password === "secretpass"){
+        if(email === "adminCoder@coder.com" && password === "megasecretpass"){
             user = {
                 id: 0,
                 name: "Admin",

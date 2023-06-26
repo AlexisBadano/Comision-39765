@@ -36,7 +36,7 @@ router.get('/products', privacy('PRIVATE'), async (req, res)=>{
     if(search){
     const {docs, hasPrevPage, hasNextPage, prevPage, nextPage, ...rest} = await productModel.paginate({category: search}, {page, limit: limit, sort: {price: sort} ,lean: true} )
     const products = docs
-    res.render('index', {products, limit , page:rest.page, hasPrevPage, hasNextPage, prevPage, nextPage, user: req.session.user})
+    res.render('products', {products, limit , page:rest.page, hasPrevPage, hasNextPage, prevPage, nextPage, user: req.session.user})
     } else {
         const {docs, hasPrevPage, hasNextPage, prevPage, nextPage, ...rest} = await productModel.paginate({ }, {page, limit: limit, lean: true} )
         const products = docs

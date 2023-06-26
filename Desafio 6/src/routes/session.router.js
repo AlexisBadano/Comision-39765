@@ -28,6 +28,12 @@ router.get('/loginFail', (req, res) => {
     res.status(400).send({status:"error", error: req.session.messages})
 })
 
+router.get('/logout', (req, res) => {
+    res.clearCookie('connect.sid');
+    res.redirect('/login')
+
+})
+
 //Trigger para redirigir a Github Callback
 router.get('/github', passport.authenticate('github'), (req, res)=>{})
 
