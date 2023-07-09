@@ -1,0 +1,29 @@
+<div>
+    <h1>Hola <s>Tamara!</s> Anderson!! :D</h1>
+
+    <h2>Bienvenida a mi proyecto</h2>
+
+    <h3>Productos:</h3>
+    <ul>
+    {{#each products}}
+    <li><p>{{this.title}} - {{this.description}} - ${{this.price}} </p></li>
+    {{/each}}
+    </ul>
+    
+    {{#if hasPrevPage}}
+    <a href="/?limit={{limit}}&page={{prevPage}}"><button> Previa </button></a>
+    {{/if}}
+
+    {{page}}
+
+    {{#if hasNextPage}}
+    <a href="/?limit={{limit}}&page={{nextPage}}"><button> Siguiente </button></a>
+    {{/if}}
+
+</div>
+
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>

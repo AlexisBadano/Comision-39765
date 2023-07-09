@@ -1,0 +1,19 @@
+<div>
+    <h1>Hola Tamara! :D</h1>
+
+    <h3>Carrito Por ID: {{this.cart._id}}</h3>
+    <br>
+        {{#each cart.products}}
+    
+        <p> Id Producto: {{this.product._id}}</p>
+
+        <p>producto: {{this.product.title}}</p>
+        <p>precio: ${{this.product.price}}</p>
+        <hr/>
+        {{/each}}
+        {{#each products.product}}
+            <p>{{this._id}}</p>
+        {{/each}}
+    </ul>
+
+</div>
