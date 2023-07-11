@@ -19,7 +19,7 @@ export default privacy;
 
 export const authRoles = (role) => {
     return async (req, res, next) => {
-        if (req.session.user.role!=role && req.session.user.role != "superAdmin") return res.status(403).send({status:"error", error:"Forbidden"})
+        if (req.session.user.role!=role) return res.status(403).send({status:"error", error:"Forbidden"})
         next()
     }
 }

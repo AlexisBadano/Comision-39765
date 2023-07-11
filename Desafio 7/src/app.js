@@ -15,19 +15,18 @@ import viewsRouter from "./routes/views.router.js";
 import sessionRouter from "./routes/session.router.js";
 
 import __dirname from './utils.js';
-import config from './config.js';
-
 import { Server } from 'socket.io';
 import initializePassport from "./config/passport.config.js";
+import cartModel from "./dao/mongo/models/cart.js";
 
 const productManager = new ProductManager();
 
 const app = express();
 
 // Conexion a la Data Base
-const PORT = config.app.PORT;
+const PORT = process.env.PORT||8080;
 const server = app.listen(PORT,()=>console.log(`Listening on ${PORT}`));
-const connection = mongoose.connect(config.mongo.URL)
+const connection = mongoose.connect("mongodb+srv://alexisbadano:ale123@clusterbackend.yfpzhkf.mongodb.net/ecommerce?retryWrites=true&w=majority")
 const io = new Server(server)
 
 //Seteo de engine de vistas
@@ -47,7 +46,7 @@ app.use((req, res, next)=>{
 //Seteo de session y conexión a la DB
 app.use(session({
     store: new MongoStore({
-        mongoUrl:config.mongo.URL,
+        mongoUrl:"mongodb+srv://alexisbadano:ale123@clusterbackend.yfpzhkf.mongodb.net/ecommerce?retryWrites=true&w=majority",
         ttl: 3600,
     }),
     secret:"CoderS3cretFelis",

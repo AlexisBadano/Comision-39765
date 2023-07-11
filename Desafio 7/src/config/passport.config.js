@@ -1,16 +1,13 @@
 import passport from "passport";
 import local from 'passport-local';
 import GithubStrategy from 'passport-github2';
-import config from "../config.js";
 
 
 import userModel from "../dao/mongo/models/user.js";
 import { createHash, validatePassowrd } from "../utils.js";
 import UserManager from "../dao/mongo/managers/userManager.js";
-import CartManager from "../dao/mongo/managers/cartManager.js";
 
 const userManager = new UserManager();
-const cartManager = new CartManager();
 
 const LocalStrategy = local.Strategy;
 
@@ -19,7 +16,6 @@ const LocalStrategy = local.Strategy;
 const initializePassport = () => {
 
     /*------------Estrategia Local-----------------*/ 
-    
     passport.use('register', new LocalStrategy({passReqToCallback: true, usernameField:'email'}, async (req, email, password, done) => {        
     try {
         const {firstName, lastName} = req.body;
@@ -28,19 +24,15 @@ const initializePassport = () => {
         if (userExist) {
         return done(null, false, {message: 'User already exists'} )
         }
-        const cart = await cartManager.createCart()
         const hashedPassword = await createHash(password);
-        
+
         const user = {
             firstName,
             lastName,
             email,
-            password: hashedPassword,
-            cart: cart
+            password: hashedPassword
         }
-    
-        
-        
+
         const result = await userManager.addUser(user)
         done(null, result)
     } catch (error) {
@@ -55,8 +47,8 @@ const initializePassport = () => {
 
     try {
         let user = await userManager.getUserBy({email})
-        console.log(config.admin.USER)
-        if(email === config.admin.USER && password === config.admin.PASS){
+
+        if(email === "adminCoder@coder.com" && password === "megasecretpass"){
             user = {
                 id: 0,
                 name: "Admin",

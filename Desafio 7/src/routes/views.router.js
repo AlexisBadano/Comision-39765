@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createHash } from "../utils.js";
-import privacy from "../middlewares/auth.js";
+import privacy, { authRoles } from "../middlewares/auth.js";
 
 import ProductManager from "../dao/mongo/managers/productManager.js";
 import productModel from "../dao/mongo/models/products.js";
@@ -47,7 +47,7 @@ router.get("/", privacy("PRIVATE"), async (req, res) => {
   }
 });
 
-router.get("/products", privacy("PRIVATE"), async (req, res) => {
+router.get("/products", privacy("PRIVATE"),authRoles('user') ,async (req, res) => {
   const { page = 1, limit = 10, search, sort } = req.query;
 
   //Busqueda por query "search", le pasa el query al Paginate que funciona como un find
