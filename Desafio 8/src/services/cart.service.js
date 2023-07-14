@@ -1,34 +1,33 @@
-export default class CartsService{
-    constructor(dao){
-        this.dao = dao;
-    }
+export default class CartsService {
+  constructor(dao) {
+    this.dao = dao;
+  }
 
-    getCarts =()=>{
-       return this.dao.getCarts();
-    }
+  getCarts = () => {
+    return this.dao.getCarts();
+  };
 
-    getCartById =(params)=>{
-        return this.dao.getCartById(params);
-    }
+  getCartById = (params) => {
+    return this.dao.getCartById(params);
+  };
 
-    createCart =(cart)=>{
-        return this.dao.createCart(cart);
-    }
+  createCart = (cart) => {
+    return this.dao.createCart(cart);
+  };
 
-   addProductToCart = (cid, pid)=>{
-        return this.dao.addProductToCart(cid, pid)
-    }
+  addProductToCart = (cid, pid) => {
+    return this.dao.addProductToCart(cid, pid);
+  };
 
-    deleteProductToCart = (cid, pid)=>{
-        return this.dao.deleteProductToCart(cid, pid)
-    }
+  deleteProductInCart = (cid, pid) => {
+    return this.dao.deleteProductInCart(cid, pid);
+  };
 
-    updateProductInCart =(cid, pid, newQuantity)=>{
-        return this.dao.updateProductInCart(cid, pid, newQuantity)
-    }
+  updateProductInCart = (cid, pid, newQuantity) => {
+    return this.dao.updateProductInCart(cid, pid, newQuantity);
+  };
 
-    deleteCart =(cid)=>{
-        return this.dao.deleteCart(cid)
-    }
-
+  deleteCart = (cid) => {
+    return this.dao.deleteCart(cid);
+  };
 }

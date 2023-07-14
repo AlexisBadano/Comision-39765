@@ -14,7 +14,7 @@ export default class CartManager {
     return cartModel.create({product:[]});
   };
 
-  updateCart = (id, prodId, quant) => {
+  addProductToCart = (id, prodId, quant) => {
     return cartModel.findByIdAndUpdate(
       id,
       { $push: { products: { product: new mongoose.Types.ObjectId(prodId) } } }
